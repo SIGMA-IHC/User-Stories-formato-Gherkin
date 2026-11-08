@@ -1,4 +1,5 @@
 Feature: HU19 - Edición de mensajes antes del envío
+
   Como persona que no conoce lengua de señas
   Quiero modificar el contenido de un mensaje antes de enviarlo
   Para asegurar que la información transmitida sea correcta
@@ -26,7 +27,7 @@ Feature: HU19 - Edición de mensajes antes del envío
       | " " |
 
   Scenario Outline: Alt - limpieza de texto
-    Given que el usuario ha redactado el mensaje "<mensaje_original>"
+    Given que el usuario desea redactar un mensaje diferente a partir de "<mensaje_original>"
     When selecciona "Limpiar"
     Then el sistema elimina el contenido del campo de escritura
 
