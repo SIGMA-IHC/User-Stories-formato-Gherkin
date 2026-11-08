@@ -36,3 +36,4 @@ Feature: HU19 - Edición de mensajes antes del envío
       | Hola |
       | Necesito ayuda |
       | Buenos días |
+
