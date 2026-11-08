@@ -1,4 +1,3 @@
-
 Feature: HU01 - Registro de nuevo usuario
 
   Como persona que no conoce lengua de señas
@@ -7,14 +6,14 @@ Feature: HU01 - Registro de nuevo usuario
 
   Scenario Outline: Happy path - registro exitoso
     Given que el usuario es nuevo
-    When completa los campos obligatorios con información válida y presiona "Registrarse"
+    When completa los campos obligatorios con información válida, incluyendo el nombre "<nombre>", el correo "<correo>" y la contraseña "<contrasena>", y presiona "Registrarse"
     Then el sistema crea su cuenta
     And muestra la pantalla de bienvenida
 
     Examples:
-      | correo                   | contrasena  | resultado             |
-      | usuario1@ejemplo.com     | Sigma123!   | Pantalla de bienvenida |
-      | usuario2@ejemplo.com     | Sigma456!   | Pantalla de bienvenida |
+      | nombre | correo               | contrasena |
+      | Ana    | usuario1@ejemplo.com | Sigma123!  |
+      | Luis   | usuario2@ejemplo.com | Sigma456!  |
 
   Scenario Outline: Unhappy - correo electrónico existente
     Given que el correo "<correo>" ya está registrado
@@ -23,19 +22,18 @@ Feature: HU01 - Registro de nuevo usuario
     And bloquea el registro
 
     Examples:
-      | correo                   |
-      | registrado1@ejemplo.com  |
-      | registrado2@ejemplo.com  |
+      | correo                  |
+      | registrado1@ejemplo.com |
+      | registrado2@ejemplo.com |
 
   Scenario Outline: Unhappy - datos incompletos
-    Given que el usuario deja el campo "<campo>" vacío
+    Given que el usuario deja el campo obligatorio "<campo>" vacío
     When intenta registrarse
     Then el sistema resalta los campos faltantes
     And solicita completarlos
 
     Examples:
-      | campo       |
-      | Nombre      |
-      | Correo      |
-      | Contraseña  |
-  
+      | campo      |
+      | Nombre     |
+      | Correo     |
+      | Contraseña |
