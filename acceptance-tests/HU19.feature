@@ -10,9 +10,9 @@ Feature: HU19 - Edición de mensajes antes del envío
 
     Examples:
       | mensaje_original | mensaje_modificado |
-      | Hola             | Buenos días        |
-      | ¿Cómo estás?     | ¿Cómo te encuentras? |
-      | Necesito ayuda   | Necesito asistencia |
+      | Hola | Buenos días |
+      | ¿Cómo estás? | ¿Cómo te encuentras? |
+      | Necesito ayuda | Necesito asistencia |
 
   Scenario Outline: Unhappy - eliminación accidental
     Given que el usuario elimina el contenido del mensaje
@@ -21,10 +21,17 @@ Feature: HU19 - Edición de mensajes antes del envío
 
     Examples:
       | contenido |
-      | ""        |
-      | "   "     |
+      | "" |
+      | "   " |
+      | " " |
 
-  Scenario: Alt - limpieza de texto
-    Given que el usuario desea redactar un mensaje diferente
+  Scenario Outline: Alt - limpieza de texto
+    Given que el usuario ha redactado el mensaje "<mensaje_original>"
     When selecciona "Limpiar"
     Then el sistema elimina el contenido del campo de escritura
+
+    Examples:
+      | mensaje_original |
+      | Hola |
+      | Necesito ayuda |
+      | Buenos días |
